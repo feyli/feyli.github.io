@@ -1,16 +1,3 @@
 .DS_Store
 .idea
-/.idea/.gitignore
-/.idea/discord.xml
-/.idea/feyli.github.io.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
-/.idea/jsLibraryMappings.xml
-/node_modules
-package-lock.json
-tailwindcss.xml
-/.idea/prettier.xml
-/.idea/codeStyles/Project.xml
 /src/svg/.idea/discord.xml
