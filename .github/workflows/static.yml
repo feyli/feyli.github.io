@@ -33,11 +33,22 @@ jobs:
         uses: actions/checkout@v7
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # upload-pages-artifact skips hidden folders, so we build the artifact
+      # ourselves to keep .well-known (atproto-did, discord, ...) in the site.
+      - name: Build artifact (keep .well-known)
+        run: |
+          mkdir _site
+          cp -r src/. _site/
+          cp -r .well-known _site/.well-known
+          tar --dereference --hard-dereference -cvf artifact.tar -C _site .
+      # deploy-pages looks for an artifact named "github-pages"
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
-          # Upload entire repository
-          path: './src'
+          name: github-pages
+          path: artifact.tar
+          retention-days: 1
+          if-no-files-found: error
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
